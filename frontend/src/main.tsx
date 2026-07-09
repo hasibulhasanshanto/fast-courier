@@ -1,10 +1,22 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+// Side-effect import: initializes i18next before any component reads from it.
+import "@/i18n";
+import { RouterProvider } from "react-router";
+import { router } from "@/routes/router";
+import { AppProviders } from "@/App";
+import "swiper/css";
 
-createRoot(document.getElementById('root')!).render(
+const rootEl = document.getElementById("root");
+if (!rootEl) {
+  throw new Error("Root element #root not found in index.html");
+}
+
+createRoot(rootEl).render(
   <StrictMode>
-    <App />
-  </StrictMode>
-)
+    <AppProviders>
+      <RouterProvider router={router} />
+    </AppProviders>
+  </StrictMode>,
+);

@@ -1,12 +1,15 @@
-import { RouterProvider } from 'react-router-dom'
-import { router } from './routes/router'
+import type { ReactNode } from "react";
+import { useApplyTheme, useApplyLanguage } from "@/features/preferences";
 
-function App() {
-  return (
-    <>
-      <RouterProvider router={router} />
-    </>
-  )
+/**
+ * AppProviders mounts the side-effect hooks that keep the document
+ * (theme on <html>, language on i18next + <html lang>) in sync with
+ * the persisted preferences stores. Render it once, near the root.
+ */
+export function AppProviders({ children }: { children: ReactNode }) {
+  useApplyTheme();
+  useApplyLanguage();
+  return <>{children}</>;
 }
 
-export default App
+export default AppProviders;

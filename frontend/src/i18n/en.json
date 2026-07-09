@@ -1,0 +1,166 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "backHome": "Back to home",
+    "saveChanges": "Save changes",
+    "send": "Send",
+    "language": "Language",
+    "theme": "Theme"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "settings": "Settings",
+    "posts": "Posts",
+    "users": "Users",
+    "login": "Sign In",
+    "register": "Sign up",
+    "logout": "Logout",
+    "openMenu": "Open menu"
+  },
+  "userMenu": {
+    "email": "Email",
+    "emailLabel": "Email address",
+    "settings": "Settings",
+    "profile": "Profile",
+    "logout": "Log out",
+    "openMenu": "Open user menu"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  },
+  "home": {
+    "welcomeName": "Welcome, {{name}}",
+    "welcome": "Welcome",
+    "heroSubtitle": "A production-grade React starter with React Router, Zustand, and react-hook-form — typed, layered, and ready to ship.",
+    "ctaGetStarted": "Get started",
+    "ctaLogin": "I already have an account",
+    "ctaDashboard": "Go to dashboard",
+    "ctaLearnMore": "Learn more",
+    "featuresEyebrow": "What's inside",
+    "featuresTitle": "Everything you need to ship a real product",
+    "featuresSubtitle": "A pragmatic toolkit composed of battle-tested libraries — no lock-in, no magic.",
+    "featureRouterTitle": "React Router v7",
+    "featureRouterDesc": "Data router with protected routes.",
+    "featureRouterBody": "File-system-free, fully typed routes that scale as your app grows.",
+    "featureZustandTitle": "Zustand + persist",
+    "featureZustandDesc": "Lightweight global state.",
+    "featureZustandBody": "Slice-style stores with localStorage persistence for auth.",
+    "featureFormsTitle": "Yup + RHF",
+    "featureFormsDesc": "Schema-driven forms.",
+    "featureFormsBody": "Uncontrolled inputs, minimal re-renders, accessible error messages.",
+    "featureTailwindTitle": "Tailwind v4",
+    "featureTailwindDesc": "CSS-first theming.",
+    "featureTailwindBody": "Tokens via @theme, dark mode out of the box, zero config.",
+    "featureModulesTitle": "Modular feature folders",
+    "featureModulesDesc": "Bounded contexts per domain.",
+    "featureModulesBody": "Auth, Dashboard and Public each own their pages, hooks and stores.",
+    "featureTypescriptTitle": "Type-safe end to end",
+    "featureTypescriptDesc": "Strict TS, no any.",
+    "featureTypescriptBody": "Catch errors at compile time, ship with confidence."
+  },
+  "about": {
+    "eyebrow": "About",
+    "title": "Built for teams that have to ship",
+    "subtitle": "This template is the result of distilling the patterns that survived real production use across many React apps.",
+    "valuePredictableTitle": "Predictable by default",
+    "valuePredictableBody": "Strong typing, strict lint rules, and explicit module boundaries — fewer surprises in code review.",
+    "valueBoringTitle": "Boring technology, used well",
+    "valueBoringBody": "We pick libraries that are stable, well-documented, and easy to replace. No silver bullets.",
+    "valueShipsTitle": "Ships the basics",
+    "valueShipsBody": "Auth scaffolding, modular routing, theming and forms are wired up so you can focus on your product.",
+    "howOrganizedTitle": "How it's organized",
+    "howOrganizedP1": "The codebase is split into three bounded contexts — auth, dashboard and public — each with their own pages, components, services and stores. A small shared layer (components/ui, hooks, lib, config) holds the building blocks.",
+    "howOrganizedP2": "The router mounts a dynamic layout per route group, so the same layout primitives can be reused or replaced without touching individual pages."
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "We'd love to hear from you",
+    "subtitle": "Reach out for support, partnerships, or just to say hi — we usually reply within one business day.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "sent": "Thanks! We received your message."
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to your account to continue.",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign in",
+      "noAccount": "Don't have an account?",
+      "create": "Create one",
+      "error": "Login failed"
+    },
+    "register": {
+      "title": "Create an account",
+      "subtitle": "Get started in less than a minute.",
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "submit": "Create account",
+      "haveAccount": "Already have an account?",
+      "signin": "Sign in",
+      "error": "Registration failed"
+    }
+  },
+  "dashboard": {
+    "title": "Welcome back, {{name}}",
+    "subtitle": "Here's a quick snapshot of what's happening today.",
+    "greeting": "Hi {{name}}",
+    "wave": "👋",
+    "shipments": "Active shipments",
+    "transit": "In transit",
+    "customers": "Customers",
+    "trend": "{{value}} from last week",
+    "quickActions": "Quick actions",
+    "editProfile": "Edit profile",
+    "settings": "Settings",
+    "search": "Search...",
+    "notifications": "Notifications"
+  },
+  "profile": {
+    "title": "Profile",
+    "subtitle": "Update your personal information.",
+    "personalDetails": "Personal details",
+    "personalDetailsDesc": "These details are visible to your team.",
+    "name": "Name",
+    "email": "Email"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your account preferences.",
+    "notifications": "Notifications",
+    "notificationsDesc": "Choose what we email you about.",
+    "shipmentUpdates": "Shipment updates",
+    "marketingEmails": "Marketing emails",
+    "weeklyDigest": "Weekly digest",
+    "apiToken": "API token",
+    "apiTokenDesc": "Use this token to authenticate API requests.",
+    "regenerate": "Regenerate"
+  },
+  "notFound": {
+    "eyebrow": "404",
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist or has been moved."
+  },
+  "error": {
+    "eyebrow": "Error",
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred. Please try again."
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "language": {
+    "en": "English",
+    "bn": "বাংলা"
+  }
+}

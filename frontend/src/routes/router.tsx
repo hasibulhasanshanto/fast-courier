@@ -1,45 +1,18 @@
-import AuthLayout from '@/layouts/AuthLayout'
-import BaseLayout from '@/layouts/BaseLayout'
-import HomePage from '@/pages/HomePage'
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter } from "react-router";
+import { publicRoutes } from "@/features/public";
+import { authRoutes } from "@/features/auth";
+import { dashboardRoutes } from "@/features/dashboard";
+import { postsRoutes } from "@/features/posts";
+import { usersRoutes } from "@/features/users";
+import NotFound from "@/layouts/NotFound";
 
-// Dynamic lazy imports to optimize performance
-const ShipmentsPage = () => import('@/pages/ShipmentsPage')
-const TrackingPage = () => import('@/pages/TrackingPage')
-const LoginPage = () => import('@/pages/auth/LoginPage')
-const RegisterPage = () => import('@/pages/auth/RegisterPage')
-
+// Router built directly from feature route arrays. No extra constants.
 export const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <BaseLayout />,
-    children: [
-      {
-        index: true,
-        element: <HomePage />,
-      },
-      {
-        path: 'shipments',
-        lazy: async () => ({ Component: (await ShipmentsPage()).default }),
-      },
-      {
-        path: 'tracking',
-        lazy: async () => ({ Component: (await TrackingPage()).default }),
-      },
-    ],
-  },
-  {
-    path: '/auth',
-    element: <AuthLayout />,
-    children: [
-      {
-        path: 'login',
-        lazy: async () => ({ Component: (await LoginPage()).default }),
-      },
-      {
-        path: 'register',
-        lazy: async () => ({ Component: (await RegisterPage()).default }),
-      },
-    ],
-  },
-])
+  ...publicRoutes,
+  ...authRoutes,
+  ...dashboardRoutes,
+  ...postsRoutes,
+  ...usersRoutes,
+  // Catch‑all 404 route.
+  { path: "*", element: <NotFound /> },
+]);

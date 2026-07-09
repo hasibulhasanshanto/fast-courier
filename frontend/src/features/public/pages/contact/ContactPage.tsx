@@ -1,0 +1,115 @@
+import { useState } from "react";
+import { Mail, MapPin, Phone } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { Container } from "@/components/common/Container";
+import { SectionHeader } from "@/components/common/SectionHeader";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "@/components/ui/card";
+import { useDocumentTitle } from "@/hooks";
+
+const CONTACT_INFO = [
+  { icon: Mail, label: "support@fastcourier.test" },
+  { icon: Phone, label: "+1 (555) 010-1234" },
+  { icon: MapPin, label: "221B Baker Street, London" },
+];
+
+export default function ContactPage() {
+  const { t } = useTranslation();
+  useDocumentTitle("Contact | Fast Courier");
+  const [submitted, setSubmitted] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setForm({ name: "", email: "", message: "" });
+    setTimeout(() => setSubmitted(false), 4000);
+  };
+
+  return (
+    <Container className="py-16 sm:py-20">
+      <SectionHeader
+        align="center"
+        eyebrow={t("contact.eyebrow")}
+        title={t("contact.title")}
+        description={t("contact.subtitle")}
+      />
+
+      <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div className="space-y-4">
+          {CONTACT_INFO.map(({ icon: Icon, label }) => (
+            <Card key={label}>
+              <CardContent className="flex items-center gap-3 py-4">
+                <span className="rounded-md bg-muted p-2 text-muted-foreground">
+                  <Icon className="h-4 w-4" aria-hidden />
+                </span>
+                <span className="text-sm">{label}</span>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        <Card className="lg:col-span-2">
+          <CardContent className="pt-6">
+            <form onSubmit={onSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div className="space-y-1.5">
+                  <label htmlFor="name" className="text-sm font-medium">
+                    {t("contact.name")}
+                  </label>
+                  <Input
+                    id="name"
+                    required
+                    value={form.name}
+                    onChange={(e) =>
+                      setForm((f) => ({ ...f, name: e.target.value }))
+                    }
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label htmlFor="email" className="text-sm font-medium">
+                    {t("contact.email")}
+                  </label>
+                  <Input
+                    id="email"
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={(e) =>
+                      setForm((f) => ({ ...f, email: e.target.value }))
+                    }
+                  />
+                </div>
+              </div>
+              <div className="space-y-1.5">
+                <label htmlFor="message" className="text-sm font-medium">
+                  {t("contact.message")}
+                </label>
+                <textarea
+                  id="message"
+                  required
+                  rows={5}
+                  value={form.message}
+                  onChange={(e) =>
+                    setForm((f) => ({ ...f, message: e.target.value }))
+                  }
+                  className="w-full rounded-lg border border-input bg-transparent px-3 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+                />
+              </div>
+              {submitted && (
+                <p
+                  role="status"
+                  className="rounded-md border border-primary/30 bg-primary/5 px-3 py-2 text-sm text-primary"
+                >
+                  {t("contact.sent")}
+                </p>
+              )}
+              <Button type="submit">{t("common.send")}</Button>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
+    </Container>
+  );
+}
