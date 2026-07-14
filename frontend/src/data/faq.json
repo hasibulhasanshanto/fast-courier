@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "question": "How do I book a parcel delivery?",
+    "answer": "Booking a parcel delivery is quick and simple. Create an account or log in, enter the sender and recipient details, select your parcel type, choose your preferred delivery option, and confirm your booking. Once your request is placed, our team will schedule a pickup and provide real-time tracking throughout the delivery process.",
+    "value": "first"
+  },
+  {
+    "id": 2,
+    "question": "Can I track my parcel in real time?",
+    "answer": "Yes. Every shipment includes real-time tracking so you can monitor your parcel from pickup to delivery. Simply enter your tracking number on our tracking page or log in to your account to view the latest shipment status, estimated delivery time, and delivery updates.",
+    "value": "second"
+  },
+  {
+    "id": 3,
+    "question": "How long does delivery usually take?",
+    "answer": "Delivery times depend on the destination and service you choose. Most deliveries within the same city are completed on the same day or within 24 hours, while intercity shipments typically arrive within 1–3 business days. Estimated delivery times are displayed during the booking process.",
+    "value": "third"
+  },
+  {
+    "id": 4,
+    "question": "What items can I send through Fast Courier?",
+    "answer": "You can send documents, parcels, e-commerce products, gifts, electronics, clothing, and many other non-restricted items. Hazardous materials, illegal substances, explosives, and other prohibited items cannot be transported. Please review our shipping guidelines before booking your shipment.",
+    "value": "fourth"
+  },
+  {
+    "id": 5,
+    "question": "What should I do if my parcel is delayed?",
+    "answer": "If your parcel experiences an unexpected delay, you can check its latest status using the tracking number. If you need additional assistance, our customer support team is available to investigate the shipment, provide updates, and resolve any delivery issues as quickly as possible.",
+    "value": "fifth"
+  },
+  {
+    "id": 6,
+    "question": "Do you provide Cash on Delivery (COD) services?",
+    "answer": "Yes. We offer Cash on Delivery (COD) services for eligible business and e-commerce customers. Once the recipient pays for the order, the collected amount is processed and transferred to the merchant according to the agreed settlement schedule.",
+    "value": "sixth"
+  },
+  {
+    "id": 7,
+    "question": "How are shipping charges calculated?",
+    "answer": "Shipping charges are calculated based on parcel weight, dimensions, pickup and delivery locations, delivery speed, and any additional services requested. You can view the estimated shipping cost before confirming your booking.",
+    "value": "seventh"
+  },
+  {
+    "id": 8,
+    "question": "What happens if the recipient is unavailable?",
+    "answer": "If the recipient is unavailable during delivery, our rider will attempt to contact them using the provided phone number. Depending on the situation, another delivery attempt may be scheduled or the parcel may be returned according to our delivery policy.",
+    "value": "eighth"
+  }
+]

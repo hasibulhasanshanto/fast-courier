@@ -8,6 +8,7 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import { Quote } from 'lucide-react'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import Reviews from '@/data/reviews.json'
 
 const TESTIMONIALS_DATA = [
   {
@@ -91,7 +92,7 @@ export default function Testimonials() {
               1024: { slidesPerView: 5, spaceBetween: 24 },
             }}
           >
-            {TESTIMONIALS_DATA.map((item) => (
+            {Reviews.map((item) => (
               <SwiperSlide key={item.id} className="py-8">
                 {({ isActive }) => (
                   <div
@@ -105,22 +106,27 @@ export default function Testimonials() {
                         `}
                   >
                     {/* Quote Icon */}
-                    <Quote className="w-8 h-8 text-teal-300 mb-4" />
+                    <Quote className="w-8 h-8 text-primary mb-4" />
 
                     {/* Review Text */}
-                    <p className="text-sm text-gray-700 leading-relaxed mb-6">{item.quotes}</p>
+                    <p className="text-sm text-gray-700 leading-relaxed mb-6">{item.review}</p>
 
                     {/* Divider */}
                     <hr className="border-dashed border-gray-300 mb-4" />
 
                     {/* Author */}
                     <div className="flex items-center gap-3">
-                      <span className="ring-2 ring-teal-500 p-5 bg-teal-500 rounded-full"></span>
+                      {/* <span className="ring-2 ring-teal-500 p-5 bg-teal-500 rounded-full"></span> */}
+                      <img
+                        src={item.user_photoURL}
+                        alt={item.userName}
+                        className="w-10 h-10 rounded-full"
+                      />
                       <div>
                         <p
                           className={`font-semibold text-sm ${isActive ? 'text-gray-900' : 'text-gray-400'}`}
                         >
-                          {item.name}
+                          {item.userName}
                         </p>
                         <p className="text-xs text-gray-400">{item.designation}</p>
                       </div>

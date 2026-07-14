@@ -310,13 +310,13 @@ export default function AboutPage() {
 
   return (
     <section className="mx-3 md:mx-4 lg:mx-16 rounded-2xl py-10 mb-10">
-      <Card className="w-full rounded-2xl border bg-background/30 p-8">
+      <Card className="w-full rounded-2xl border bg-background/30 p-4 lg:p-8">
         <SectionHeader
           eyebrow="About"
           title="Built for teams that have to ship"
           description="Enjoy fast, reliable parcel delivery with real-time tracking and zero hassle. From personal packages to business shipments — we deliver on time, every time."
         />
-        <hr className="border border-b border-solid border-black/40 mt-5" />
+        <hr className="mt-5 border-stone-300" />
 
         <CardContent className="px-0">
           <Tabs defaultValue={aboutTabs[0].value} className="w-full">
