@@ -1,61 +1,16 @@
 import { useRef } from 'react'
 import { Container } from '@/components/common/Container'
 import { SectionHeader } from '@/components/common/SectionHeader'
-import Carry from '@/assets/images/testimonials/carry.png'
-
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
-import { Quote } from 'lucide-react'
+import { Quote, Star, BadgeCheck } from 'lucide-react'
+import Carry from '@/assets/images/testimonials/carry.png'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import Reviews from '@/data/reviews.json'
+import type { Review } from '@/features/type/reviews'
 
-const TESTIMONIALS_DATA = [
-  {
-    id: 1,
-    quotes:
-      'A posture corrector works by providing support and gentle alignment to your shoulders, back, and spine, encouraging you to maintain proper posture throughout the day. ',
-    name: 'Tuhin Hawlader',
-    designation: 'Product Designer',
-  },
-  {
-    id: 2,
-    quotes:
-      'A posture corrector works by providing support and gentle alignment to your shoulders, back, and spine, encouraging you to maintain proper posture throughout the day. ',
-    name: 'Rasel Ahmed',
-    designation: 'CEO',
-  },
-  {
-    id: 3,
-    quotes:
-      'A posture corrector works by providing support and gentle alignment to your shoulders, back, and spine, encouraging you to maintain proper posture throughout the day. ',
-    name: 'Tuhin Chowdhury',
-    designation: 'Senior Product Designer',
-  },
-  {
-    id: 4,
-    quotes:
-      'A posture corrector works by providing support and gentle alignment to your shoulders, back, and spine, encouraging you to maintain proper posture throughout the day. ',
-    name: 'Nasir Uddin',
-    designation: 'CEO',
-  },
-  {
-    id: 5,
-    quotes:
-      'A posture corrector works by providing support and gentle alignment to your shoulders, back, and spine, encouraging you to maintain proper posture throughout the day. ',
-    name: 'Rasel Ahmed',
-    designation: 'CEO - Chaldal',
-  },
-  {
-    id: 5,
-    quotes:
-      'A posture corrector works by providing support and gentle alignment to your shoulders, back, and spine, encouraging you to maintain proper posture throughout the day. ',
-    name: 'Piyas Ahmed',
-    designation: 'Manager - Blue Jeans',
-  },
-]
-
-export default function Testimonials() {
+// Review
+export default function Testimonials({ reviews }: { reviews: Review[] }) {
   const prevRef = useRef<HTMLButtonElement>(null)
   const nextRef = useRef<HTMLButtonElement>(null)
   return (
@@ -92,7 +47,7 @@ export default function Testimonials() {
               1024: { slidesPerView: 5, spaceBetween: 24 },
             }}
           >
-            {Reviews.map((item) => (
+            {reviews.map((item) => (
               <SwiperSlide key={item.id} className="py-8">
                 {({ isActive }) => (
                   <div
@@ -110,6 +65,31 @@ export default function Testimonials() {
 
                     {/* Review Text */}
                     <p className="text-sm text-gray-700 leading-relaxed mb-6">{item.review}</p>
+
+                    {/* Rating */}
+                    <div className="mb-4 flex items-center justify-between">
+                      <div className="flex items-center gap-1">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <Star
+                            key={star}
+                            className={`h-4 w-4 ${
+                              star <= Math.round(item.ratings)
+                                ? 'fill-yellow-400 text-yellow-400'
+                                : 'text-gray-300'
+                            }`}
+                          />
+                        ))}
+
+                        <span className="ml-2 text-sm font-medium text-gray-600">
+                          {item.ratings.toFixed(1)}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center gap-1 text-xs text-green-600">
+                        <BadgeCheck className="h-4 w-4" />
+                        Verified
+                      </div>
+                    </div>
 
                     {/* Divider */}
                     <hr className="border-dashed border-gray-300 mb-4" />

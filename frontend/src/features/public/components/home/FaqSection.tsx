@@ -6,9 +6,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
-import faqData from '@/data/faq.json'
+import type { Faq } from '@/features/type/faqs'
 
-export default function FaqSection() {
+export default function FaqSection({ faqs }: { faqs: Faq[] }) {
   return (
     <>
       <section>
@@ -22,7 +22,7 @@ export default function FaqSection() {
 
           <div className="mt-8 flex">
             <Accordion type="single" collapsible defaultValue="first" className="max-w-4xl mx-auto">
-              {faqData.map((faq) => (
+              {faqs.map((faq) => (
                 <AccordionItem value={faq.value} key={faq.id}>
                   <AccordionTrigger>{faq.question}</AccordionTrigger>
                   <AccordionContent>{faq.answer}</AccordionContent>
