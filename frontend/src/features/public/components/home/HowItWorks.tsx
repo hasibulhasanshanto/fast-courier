@@ -1,45 +1,44 @@
+import { useTranslation } from 'react-i18next'
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Container } from "@/components/common/Container";
-import { SectionHeader } from "@/components/common/SectionHeader";
-import { Banknote, Building2, CirclePile, Truck } from "lucide-react";
-
-const WORKS_SECTION_DATA = [
-  {
-    id: 1,
-    icon: Truck,
-    title: "Booking Pick & Drop",
-    description:
-      "From personal packages to business shipments — we deliver on time, every time.",
-  },
-  {
-    id: 2,
-    icon: Banknote,
-    title: "Cash On Delivery",
-    description:
-      "From personal packages to business shipments — we deliver on time, every time.",
-  },
-  {
-    id: 3,
-    icon: CirclePile,
-    title: "Delivery Hub",
-    description:
-      "From personal packages to business shipments — we deliver on time, every time.",
-  },
-  {
-    id: 4,
-    icon: Building2,
-    title: "Booking SME & Corporate",
-    description:
-      "From personal packages to business shipments — we deliver on time, every time.",
-  },
-];
+} from '@/components/ui/card'
+import { Container } from '@/components/common/Container'
+import { SectionHeader } from '@/components/common/SectionHeader'
+import { Banknote, Building2, CirclePile, Truck } from 'lucide-react'
 
 export default function HowItWorks() {
+  const { t } = useTranslation()
+
+  const WORKS_SECTION_DATA = [
+    {
+      id: 1,
+      icon: Truck,
+      title: t('home.howItWorks.item1Title'),
+      description: t('home.howItWorks.item1Desc'),
+    },
+    {
+      id: 2,
+      icon: Banknote,
+      title: t('home.howItWorks.item2Title'),
+      description: t('home.howItWorks.item2Desc'),
+    },
+    {
+      id: 3,
+      icon: CirclePile,
+      title: t('home.howItWorks.item3Title'),
+      description: t('home.howItWorks.item3Desc'),
+    },
+    {
+      id: 4,
+      icon: Building2,
+      title: t('home.howItWorks.item4Title'),
+      description: t('home.howItWorks.item4Desc'),
+    },
+  ]
+
   return (
     <>
       <section>
@@ -47,7 +46,7 @@ export default function HowItWorks() {
           <SectionHeader
             align="left"
             eyebrow=""
-            title="How it Works"
+            title={t('home.howItWorks.title')}
             description=""
           />
 
@@ -65,5 +64,5 @@ export default function HowItWorks() {
         </Container>
       </section>
     </>
-  );
+  )
 }

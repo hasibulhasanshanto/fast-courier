@@ -12,6 +12,9 @@
     "about": "About",
     "contact": "Contact",
     "dashboard": "Dashboard",
+    "tracking": "Tracking",
+    "coverage": "Coverage",
+    "pricing": "Pricing",
     "profile": "Profile",
     "settings": "Settings",
     "posts": "Posts",
@@ -60,7 +63,96 @@
     "featureModulesBody": "Auth, Dashboard and Public each own their pages, hooks and stores.",
     "featureTypescriptTitle": "Type-safe end to end",
     "featureTypescriptDesc": "Strict TS, no any.",
-    "featureTypescriptBody": "Catch errors at compile time, ship with confidence."
+    "featureTypescriptBody": "Catch errors at compile time, ship with confidence.",
+    "hero": {
+      "slide1": {
+        "badge": "Fast & Reliable Delivery",
+        "headline": "Your Package,\nDelivered On Time.",
+        "subheading": "From same-day city deliveries to nationwide shipping — Fast Courier gets your parcels where they need to be, fast and safely.",
+        "primaryCta": "Send a Package",
+        "secondaryCta": "Track Your Shipment",
+        "stat1Label": "Parcels Delivered",
+        "stat2Label": "On-Time Rate",
+        "stat3Label": "Support Available",
+        "badge1": "Live Tracking",
+        "badge2": "Same Day"
+      },
+      "slide2": {
+        "badge": "Nationwide Coverage",
+        "headline": "We Deliver\nEvery Corner of BD.",
+        "subheading": "Our growing network spans all 64 districts of Bangladesh. Whether urban or rural, your shipment reaches its destination without a hassle.",
+        "primaryCta": "Explore Coverage",
+        "secondaryCta": "Get a Quote",
+        "stat1Label": "Districts Covered",
+        "stat2Label": "Pickup Points",
+        "stat3Label": "City Express",
+        "badge1": "Insured",
+        "badge2": "64 Districts"
+      },
+      "slide3": {
+        "badge": "Trusted & Secured",
+        "headline": "Send With Confidence,\nEvery Time.",
+        "subheading": "Every shipment is insured, real-time tracked and handled with care. Build your e-commerce business on a courier partner you can trust.",
+        "primaryCta": "Start Sending Now",
+        "secondaryCta": "Become a Merchant",
+        "stat1Label": "Happy Merchants",
+        "stat2Label": "Insured Cargo",
+        "stat3Label": "Customer Rating",
+        "badge1": "Insured",
+        "badge2": "Real-time"
+      },
+      "ctaDashboard": "Go to Dashboard",
+      "ctaTrack": "Track My Package",
+      "prevSlide": "Previous slide",
+      "nextSlide": "Next slide"
+    },
+    "howItWorks": {
+      "title": "How it Works",
+      "item1Title": "Booking Pick & Drop",
+      "item1Desc": "Schedule a pickup from your location and we'll deliver it to the destination on time, every time.",
+      "item2Title": "Cash On Delivery",
+      "item2Desc": "We collect payment on your behalf and transfer it directly to your account — hassle-free.",
+      "item3Title": "Delivery Hub",
+      "item3Desc": "Drop your parcel at any of our 500+ hubs across Bangladesh for quick processing and dispatch.",
+      "item4Title": "Booking SME & Corporate",
+      "item4Desc": "Custom bulk delivery solutions tailored for small businesses and large enterprises alike."
+    },
+    "ourServices": {
+      "title": "Our Services",
+      "subtitle": "Enjoy fast, reliable parcel delivery with real-time tracking and zero hassle. From personal packages to business shipments — we deliver on time, every time.",
+      "service1Title": "Express & Standard Delivery",
+      "service1Desc": "We deliver parcels within 24–72 hours in Dhaka, Chittagong, Sylhet, Khulna, and Rajshahi. Express delivery available in Dhaka within 4–6 hours from pick-up to drop-off.",
+      "service2Title": "Nationwide Delivery",
+      "service2Desc": "We deliver parcels nationwide with home delivery in every district, ensuring your products reach customers within 48–72 hours.",
+      "service3Title": "Fulfillment Solution",
+      "service3Desc": "We also offer customized service with inventory management support, online order processing, packaging, and after sales support.",
+      "service4Title": "Cash On Delivery",
+      "service4Desc": "100% cash on delivery anywhere in Bangladesh with guaranteed safety of your product.",
+      "service5Title": "Corporate Service",
+      "service5Desc": "Customized corporate services which includes warehouse and inventory management support.",
+      "service6Title": "Reverse Logistics",
+      "service6Desc": "Through our reverse logistics facility we allow end customers to return or exchange their products with online business merchants."
+    },
+    "whatWeOffer": {
+      "item1Title": "Live Parcel Tracking",
+      "item1Desc": "Stay updated in real-time with our live parcel tracking feature. From pick-up to delivery, monitor your shipment's journey and get instant status updates for complete peace of mind.",
+      "item2Title": "100% Safe Delivery",
+      "item2Desc": "We ensure your parcels are handled with the utmost care and delivered securely to their destination. Our reliable process guarantees safe and damage-free delivery every time.",
+      "item3Title": "24/7 Call Center Support",
+      "item3Desc": "Our dedicated support team is available around the clock to assist you with any questions, updates, or delivery concerns—anytime you need us."
+    },
+    "salesTeam": {
+      "title": "We've helped thousands of sales teams"
+    },
+    "testimonials": {
+      "title": "What our customers are saying",
+      "description": "Trusted by thousands of merchants and individuals across Bangladesh — hear what they have to say about Fast Courier.",
+      "verified": "Verified"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions (FAQ)",
+      "description": "Have questions? We have answers. Find everything you need to know about our courier services below."
+    }
   },
   "about": {
     "eyebrow": "About",

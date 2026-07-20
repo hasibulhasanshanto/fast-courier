@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Container } from '@/components/common/Container'
 import { SectionHeader } from '@/components/common/SectionHeader'
 import {
@@ -9,6 +10,8 @@ import {
 import type { Faq } from '@/features/type/faqs'
 
 export default function FaqSection({ faqs }: { faqs: Faq[] }) {
+  const { t } = useTranslation()
+
   return (
     <>
       <section>
@@ -16,8 +19,8 @@ export default function FaqSection({ faqs }: { faqs: Faq[] }) {
           <SectionHeader
             align="center"
             eyebrow=""
-            title="Frequently Asked Question (FAQ)"
-            description="Enhance posture, mobility, and well-being effortlessly with Posture Pro. Achieve proper alignment, reduce pain, and strengthen your body with ease!"
+            title={t('home.faq.title')}
+            description={t('home.faq.description')}
           />
 
           <div className="mt-8 flex">

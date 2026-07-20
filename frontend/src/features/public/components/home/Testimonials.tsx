@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Container } from '@/components/common/Container'
 import { SectionHeader } from '@/components/common/SectionHeader'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -9,10 +10,11 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import type { Review } from '@/features/type/reviews'
 
-// Review
 export default function Testimonials({ reviews }: { reviews: Review[] }) {
+  const { t } = useTranslation()
   const prevRef = useRef<HTMLButtonElement>(null)
   const nextRef = useRef<HTMLButtonElement>(null)
+
   return (
     <>
       <section>
@@ -23,12 +25,12 @@ export default function Testimonials({ reviews }: { reviews: Review[] }) {
           <SectionHeader
             align="center"
             eyebrow=""
-            title="What our customers are sayings"
-            description="Enhance posture, mobility, and well-being effortlessly with Posture Pro. Achieve proper alignment, reduce pain, and strengthen your body with ease!"
+            title={t('home.testimonials.title')}
+            description={t('home.testimonials.description')}
           />
         </Container>
-        {/* Sliders  */}
 
+        {/* Sliders */}
         <div className="mt-15 relative">
           <Swiper
             modules={[Autoplay, Navigation, Pagination]}
@@ -87,7 +89,7 @@ export default function Testimonials({ reviews }: { reviews: Review[] }) {
 
                       <div className="flex items-center gap-1 text-xs text-green-600">
                         <BadgeCheck className="h-4 w-4" />
-                        Verified
+                        {t('home.testimonials.verified')}
                       </div>
                     </div>
 
@@ -96,7 +98,6 @@ export default function Testimonials({ reviews }: { reviews: Review[] }) {
 
                     {/* Author */}
                     <div className="flex items-center gap-3">
-                      {/* <span className="ring-2 ring-teal-500 p-5 bg-teal-500 rounded-full"></span> */}
                       <img
                         src={item.user_photoURL}
                         alt={item.userName}

@@ -1,33 +1,33 @@
+import { useTranslation } from 'react-i18next'
 import { Card, CardDescription, CardTitle, CardContent } from '@/components/ui/card'
 import { Container } from '@/components/common/Container'
 import DropParcel from '@/assets/images/offer/drop-parcel.png'
 import ManParcel from '@/assets/images/offer/man-parcel.png'
 
-const OFFER_DATA = [
-  {
-    id: 1,
-    icon: DropParcel,
-    title: 'Live Parcel Tracking',
-    description:
-      "Stay updated in real-time with our live parcel tracking feature. From pick-up to delivery, monitor your shipment's journey and get instant status updates for complete peace of mind.",
-  },
-  {
-    id: 2,
-    icon: ManParcel,
-    title: '100% Safe Delivery',
-    description:
-      'We ensure your parcels are handled with the utmost care and delivered securely to their destination. Our reliable process guarantees safe and damage-free delivery every time.',
-  },
-  {
-    id: 3,
-    icon: ManParcel,
-    title: '24/7 Call Center Support',
-    description:
-      'Our dedicated support team is available around the clock to assist you with any questions, updates, or delivery concerns—anytime you need us.',
-  },
-]
-
 export default function WhatWeOffer() {
+  const { t } = useTranslation()
+
+  const OFFER_DATA = [
+    {
+      id: 1,
+      icon: DropParcel,
+      title: t('home.whatWeOffer.item1Title'),
+      description: t('home.whatWeOffer.item1Desc'),
+    },
+    {
+      id: 2,
+      icon: ManParcel,
+      title: t('home.whatWeOffer.item2Title'),
+      description: t('home.whatWeOffer.item2Desc'),
+    },
+    {
+      id: 3,
+      icon: ManParcel,
+      title: t('home.whatWeOffer.item3Title'),
+      description: t('home.whatWeOffer.item3Desc'),
+    },
+  ]
+
   return (
     <>
       <section>

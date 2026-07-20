@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Container } from '@/components/common/Container'
 import { SectionHeader } from '@/components/common/SectionHeader'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -8,6 +9,7 @@ import MoonStar from '@/assets/images/brands/moonstar.png'
 import Star from '@/assets/images/brands/star.png'
 import StartPeople from '@/assets/images/brands/start-people.png'
 import RandStand from '@/assets/images/brands/randstand.png'
+
 export interface Brand {
   id: number
   name: string
@@ -30,13 +32,15 @@ const BRANDS_DATA: Brand[] = [
 ]
 
 export default function SalesTeam() {
+  const { t } = useTranslation()
+
   return (
     <>
       <Container className="py-16 sm:pt-20">
         <SectionHeader
           align="center"
           eyeball=""
-          title="We've helped thousands of sales teams"
+          title={t('home.salesTeam.title')}
           description=""
         />
         <div className="mt-15">

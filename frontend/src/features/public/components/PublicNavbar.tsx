@@ -22,9 +22,9 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
 const PUBLIC_NAV_LINKS = [
   { to: ROUTES.home, labelKey: 'nav.home' as const, end: true },
   // { to: ROUTES.services, labelKey: 'Services' as const },
-  { to: ROUTES.coverage, labelKey: 'Coverage' as const },
+  { to: ROUTES.coverage, labelKey: 'nav.coverage' as const },
   { to: ROUTES.about, labelKey: 'nav.about' as const },
-  { to: ROUTES.pricing, labelKey: 'Pricing' as const },
+  { to: ROUTES.pricing, labelKey: 'nav.pricing' as const },
   // { to: ROUTES.blog, labelKey: 'Blog' as const },
   { to: ROUTES.contact, labelKey: 'nav.contact' as const },
 ]
