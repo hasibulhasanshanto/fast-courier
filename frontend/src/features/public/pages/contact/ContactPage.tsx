@@ -60,6 +60,7 @@ export default function ContactPage() {
                   </label>
                   <Input
                     id="name"
+                    className="focus-visible:border-primary focus-visible:ring-0 focus-visible:outline-none"
                     placeholder="ex. John Doe"
                     required
                     value={form.name}
@@ -73,6 +74,7 @@ export default function ContactPage() {
                   <Input
                     id="email"
                     type="email"
+                    className="focus-visible:border-primary focus-visible:ring-0 focus-visible:outline-none"
                     placeholder="ex. john@example.com"
                     required
                     value={form.email}
@@ -91,7 +93,7 @@ export default function ContactPage() {
                   rows={5}
                   value={form.message}
                   onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-                  className="w-full rounded-lg border border-input bg-transparent px-3 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+                  className="w-full rounded-lg border border-input bg-transparent px-3 py-2 text-sm focus-visible:ring-ring/50 focus-visible:border-primary focus-visible:ring-0 focus-visible:outline-none"
                 />
               </div>
               {submitted && (

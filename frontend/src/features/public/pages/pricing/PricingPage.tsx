@@ -88,10 +88,12 @@ function calculateTieredCost(weight: number, destination: Destination): number {
 
 export default function AboutPage() {
   useDocumentTitle('Pricing | Fast Courier')
+  const MAX_WEIGHT = 20
 
   const [parcelType, setParcelType] = useState<ParcelType>('document')
   const [destination, setDestination] = useState<Destination>('dhaka')
   const [weight, setWeight] = useState<number>(0)
+  const isOverweight = parcelType === 'non-document' && weight > MAX_WEIGHT
 
   // Live-computed cost
   const parcelCost = useMemo(() => {
@@ -100,7 +102,8 @@ export default function AboutPage() {
       return getRate(destination).base
     }
     // Non-document: tiered pricing based on weight
-    return calculateTieredCost(weight, destination)
+    const cappedWeight = Math.min(weight, MAX_WEIGHT)
+    return calculateTieredCost(cappedWeight, destination)
   }, [parcelType, destination, weight])
 
   const handleReset = () => {
@@ -173,6 +176,7 @@ export default function AboutPage() {
                     <FieldLabel htmlFor="weight">Weight (KG)</FieldLabel>
                     <Input
                       id="weight"
+                      className="focus-visible:border-primary focus-visible:ring-0 focus-visible:outline-none"
                       type="number"
                       min="0"
                       placeholder="Enter weight in KG"
@@ -192,6 +196,12 @@ export default function AboutPage() {
                 <h3 className="text-lg font-semibold mt-6">
                   Estimated Cost: {parcelCost.toFixed(2)} BDT
                 </h3>
+                {isOverweight && (
+                  <p className="text-sm text-red-400 mt-1">
+                    Weight exceeds 20 KG limit. Shown price is for 20 KG — please contact us for
+                    bulk pricing.
+                  </p>
+                )}
               </form>
             </Card>
 
