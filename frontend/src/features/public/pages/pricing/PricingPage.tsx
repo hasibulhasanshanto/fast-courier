@@ -14,47 +14,10 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { useMemo, useState } from 'react'
-
-const courierCharges = [
-  {
-    id: 1,
-    name: 'Inside Dhaka Delivery Charge',
-    content: (
-      <>
-        80 BDT - upto 1 KG <br />
-        20 BDT next per kg - upto 10 KG <br />
-        15 BDT next per kg - upto 20 KG <br />
-      </>
-    ),
-  },
-  {
-    id: 2,
-    name: 'Outside Dhaka Delivery Charge',
-    content: (
-      <>
-        100 BDT - upto 1 KG <br />
-        30 BDT next per kg - upto 10 KG <br />
-        25 BDT next per kg - upto 20 KG <br />
-      </>
-    ),
-  },
-]
+import { useTranslation } from 'react-i18next'
 
 type ParcelType = 'document' | 'non-document'
 type Destination = 'dhaka' | 'chittagong' | 'khulna' | 'rajshahi' | 'sylhet'
-
-const parcelTypes = [
-  { label: 'Document', value: 'document' },
-  { label: 'Non-Document', value: 'non-document' },
-]
-
-const destinations = [
-  { label: 'Dhaka', value: 'dhaka' },
-  { label: 'Chittagong', value: 'chittagong' },
-  { label: 'Khulna', value: 'khulna' },
-  { label: 'Rajshahi', value: 'rajshahi' },
-  { label: 'Sylhet', value: 'sylhet' },
-]
 
 // Pricing rules only differentiate Dhaka vs other locations
 const pricingRules = {
@@ -86,7 +49,8 @@ function calculateTieredCost(weight: number, destination: Destination): number {
   return cost
 }
 
-export default function AboutPage() {
+export default function PricingPage() {
+  const { t } = useTranslation()
   useDocumentTitle('Pricing | Fast Courier')
   const MAX_WEIGHT = 20
 
@@ -94,6 +58,49 @@ export default function AboutPage() {
   const [destination, setDestination] = useState<Destination>('dhaka')
   const [weight, setWeight] = useState<number>(0)
   const isOverweight = parcelType === 'non-document' && weight > MAX_WEIGHT
+
+  const parcelTypes = useMemo(
+    () => [
+      { label: t('pricing.document'), value: 'document' as const },
+      { label: t('pricing.nonDocument'), value: 'non-document' as const },
+    ],
+    [t]
+  )
+
+  const destinations = useMemo(
+    () => [
+      { label: t('pricing.dhaka'), value: 'dhaka' as const },
+      { label: t('pricing.chittagong'), value: 'chittagong' as const },
+      { label: t('pricing.khulna'), value: 'khulna' as const },
+      { label: t('pricing.rajshahi'), value: 'rajshahi' as const },
+      { label: t('pricing.sylhet'), value: 'sylhet' as const },
+    ],
+    [t]
+  )
+
+  const courierCharges = useMemo(
+    () => [
+      {
+        id: 1,
+        name: t('pricing.insideDhakaTitle'),
+        lines: [
+          t('pricing.charges.insideDhaka.line1'),
+          t('pricing.charges.insideDhaka.line2'),
+          t('pricing.charges.insideDhaka.line3'),
+        ],
+      },
+      {
+        id: 2,
+        name: t('pricing.outsideDhakaTitle'),
+        lines: [
+          t('pricing.charges.outsideDhaka.line1'),
+          t('pricing.charges.outsideDhaka.line2'),
+          t('pricing.charges.outsideDhaka.line3'),
+        ],
+      },
+    ],
+    [t]
+  )
 
   // Live-computed cost
   const parcelCost = useMemo(() => {
@@ -116,31 +123,31 @@ export default function AboutPage() {
     <section className="mx-3 md:mx-4 lg:mx-16 rounded-2xl py-10 mb-10">
       <Card className="w-full rounded-2xl border bg-background/30 p-4 lg:p-8">
         <SectionHeader
-          eyebrow={'Pricing'}
-          title={'Pricing Calculator'}
-          description="Enjoy fast, reliable parcel delivery with real-time tracking and zero hassle. From personal packages to business shipments — we deliver on time, every time."
+          eyebrow={t('pricing.eyebrow')}
+          title={t('pricing.title')}
+          description={t('pricing.description')}
         />
         <hr className="mt-5 border-stone-300" />
 
         <CardContent className="px-0">
-          <h2 className="text-2xl font-semibold mb-5 text-center">Calculate Your Cost</h2>
+          <h2 className="text-2xl font-semibold mb-5 text-center">{t('pricing.calculateTitle')}</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <Card className="p-4">
               <form>
                 <FieldGroup>
                   <Field>
-                    <FieldLabel htmlFor="parcel_type">Parcel Type</FieldLabel>
+                    <FieldLabel htmlFor="parcel_type">{t('pricing.parcelType')}</FieldLabel>
                     <Select
                       items={parcelTypes}
                       value={parcelType}
                       onValueChange={(v) => setParcelType(v as ParcelType)}
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder="Select a parcel type" />
+                        <SelectValue placeholder={t('pricing.selectParcelType')} />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectLabel>Parcel Type</SelectLabel>
+                          <SelectLabel>{t('pricing.parcelType')}</SelectLabel>
                           {parcelTypes.map((item) => (
                             <SelectItem key={item.value} value={item.value}>
                               {item.label}
@@ -151,18 +158,18 @@ export default function AboutPage() {
                     </Select>
                   </Field>
                   <Field>
-                    <FieldLabel htmlFor="destination">Delivery Destination</FieldLabel>
+                    <FieldLabel htmlFor="destination">{t('pricing.deliveryDestination')}</FieldLabel>
                     <Select
                       items={destinations}
                       value={destination}
                       onValueChange={(v) => setDestination(v as Destination)}
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder="Select a destination" />
+                        <SelectValue placeholder={t('pricing.selectDestination')} />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectLabel>Destination</SelectLabel>
+                          <SelectLabel>{t('pricing.destination')}</SelectLabel>
                           {destinations.map((item) => (
                             <SelectItem key={item.value} value={item.value}>
                               {item.label}
@@ -173,13 +180,13 @@ export default function AboutPage() {
                     </Select>
                   </Field>
                   <Field>
-                    <FieldLabel htmlFor="weight">Weight (KG)</FieldLabel>
+                    <FieldLabel htmlFor="weight">{t('pricing.weight')}</FieldLabel>
                     <Input
                       id="weight"
                       className="focus-visible:border-primary focus-visible:ring-0 focus-visible:outline-none"
                       type="number"
                       min="0"
-                      placeholder="Enter weight in KG"
+                      placeholder={t('pricing.weightPlaceholder')}
                       value={weight}
                       onChange={(e) => setWeight(Number(e.target.value))}
                       disabled={parcelType === 'document'}
@@ -188,19 +195,16 @@ export default function AboutPage() {
                   <FieldGroup>
                     <Field className="grid grid-cols-[3fr_7fr] gap-4">
                       <Button variant="outline" type="button" onClick={handleReset}>
-                        Reset
+                        {t('pricing.reset')}
                       </Button>
                     </Field>
                   </FieldGroup>
                 </FieldGroup>
                 <h3 className="text-lg font-semibold mt-6">
-                  Estimated Cost: {parcelCost.toFixed(2)} BDT
+                  {t('pricing.estimatedCost', { cost: parcelCost.toFixed(2) })}
                 </h3>
                 {isOverweight && (
-                  <p className="text-sm text-red-400 mt-1">
-                    Weight exceeds 20 KG limit. Shown price is for 20 KG — please contact us for
-                    bulk pricing.
-                  </p>
+                  <p className="text-sm text-red-400 mt-1">{t('pricing.overweightWarning')}</p>
                 )}
               </form>
             </Card>
@@ -212,7 +216,14 @@ export default function AboutPage() {
                     <h3 className="tex-base lg:text-lg text-white font-semibold bg-primary/70 p-3 rounded-lg">
                       {charge.name}
                     </h3>
-                    <p className="mt-2 text-stone-500 text-sm ">{charge.content}</p>
+                    <p className="mt-2 text-stone-500 text-sm">
+                      {charge.lines.map((line, index) => (
+                        <span key={index}>
+                          {line}
+                          {index < charge.lines.length - 1 && <br />}
+                        </span>
+                      ))}
+                    </p>
                   </CardContent>
                 </Card>
               ))}

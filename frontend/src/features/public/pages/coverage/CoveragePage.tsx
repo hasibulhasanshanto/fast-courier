@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { SectionHeader } from '@/components/common/SectionHeader'
 import { useDocumentTitle } from '@/hooks'
 import { Card, CardContent } from '@/components/ui/card'
@@ -21,6 +22,7 @@ interface ServiceCenter {
 }
 
 export default function CoveragePage() {
+  const { t } = useTranslation()
   useDocumentTitle('Coverage | Fast Courier')
 
   const mapRef = useRef<LeafletMap | null>(null)
@@ -37,7 +39,7 @@ export default function CoveragePage() {
       const coordinates: [number, number] = [searchArea.latitude, searchArea.longitude]
       mapRef.current?.flyTo(coordinates, 12) // Zoom in to the found area
     } else {
-      toast('Location not found. Please try another city.')
+      toast(t('coverage.locationNotFound'))
     }
   }
 
@@ -45,25 +47,25 @@ export default function CoveragePage() {
     <section className="mx-3 md:mx-4 lg:mx-16 rounded-2xl py-10 mb-10">
       <Card className="w-full rounded-2xl border bg-background/30 p-4 lg:p-8">
         <SectionHeader
-          eyebrow={'Coverage'}
-          title={'We are available in 64 districts and more than 100+ cities across Bangladesh'}
+          eyebrow={t('coverage.eyebrow')}
+          title={t('coverage.title')}
         />
         <div className="mt-4 max-w-xl">
           <Field orientation="horizontal">
             <Input
               ref={inputRef}
               type="search"
-              placeholder="Search location..."
+              placeholder={t('coverage.searchPlaceholder')}
               className="focus-visible:border-primary focus-visible:ring-0 focus-visible:outline-none"
             />
-            <Button onClick={handleSearch}>Search</Button>
+            <Button onClick={handleSearch}>{t('coverage.search')}</Button>
           </Field>
         </div>
         <hr className="mt-5 border-stone-300" />
 
         {/* map with markers */}
         <CardContent className="px-0">
-          <h2 className="text-xl font-semibold mb-5">We deliver almost all over Bangladesh</h2>
+          <h2 className="text-xl font-semibold mb-5">{t('coverage.mapTitle')}</h2>
           <MapContainer
             center={bangladeshCenter}
             zoom={8}
@@ -77,9 +79,9 @@ export default function CoveragePage() {
             {serviceCenters.map((area, index) => (
               <Marker key={index} position={[area.latitude, area.longitude]}>
                 <Popup>
-                  <strong>Hub: {area.city}</strong>
+                  <strong>{t('coverage.hub', { city: area.city })}</strong>
                   <br />
-                  Covered area: {area.covered_area.join(', ')}
+                  {t('coverage.coveredArea', { areas: area.covered_area.join(', ') })}
                 </Popup>
               </Marker>
             ))}
