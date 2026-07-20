@@ -10,8 +10,8 @@ import { useDocumentTitle } from '@/hooks'
 
 const CONTACT_INFO = [
   { icon: Mail, label: 'support@fastcourier.test' },
-  { icon: Phone, label: '+1 (555) 010-1234' },
-  { icon: MapPin, label: '221B Baker Street, London' },
+  { icon: Phone, label: '(+88)-017XX-XXXXXX' },
+  { icon: MapPin, label: 'Banani, Dhaka' },
 ]
 
 export default function ContactPage() {
