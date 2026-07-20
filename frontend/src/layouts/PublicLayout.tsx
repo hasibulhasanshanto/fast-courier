@@ -1,5 +1,5 @@
-import { Outlet } from "react-router";
-import { PublicNavbar, PublicFooter } from "@/features/public";
+import { Outlet } from 'react-router'
+import { PublicNavbar, PublicFooter } from '@/features/public'
 
 /**
  * PublicLayout — used for marketing & informational pages (home, about, contact).
@@ -14,5 +14,5 @@ export default function PublicLayout() {
       </div>
       <PublicFooter />
     </div>
-  );
+  )
 }

@@ -9,6 +9,7 @@ import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import type { Map as LeafletMap, LatLngExpression } from 'leaflet'
 import { useLoaderData } from 'react-router'
 import 'leaflet/dist/leaflet.css'
+import { toast } from 'sonner'
 
 const bangladeshCenter: LatLngExpression = [23.685, 90.3563]
 
@@ -36,7 +37,7 @@ export default function CoveragePage() {
       const coordinates: [number, number] = [searchArea.latitude, searchArea.longitude]
       mapRef.current?.flyTo(coordinates, 12) // Zoom in to the found area
     } else {
-      alert('Location not found. Please try another city.')
+      toast('Location not found. Please try another city.')
     }
   }
 

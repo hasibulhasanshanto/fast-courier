@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
 const courierCharges = [
   {
@@ -40,12 +40,12 @@ const courierCharges = [
   },
 ]
 
-const items = [
-  { label: 'Apple', value: 'apple' },
-  { label: 'Banana', value: 'banana' },
-  { label: 'Blueberry', value: 'blueberry' },
-  { label: 'Grapes', value: 'grapes' },
-  { label: 'Pineapple', value: 'pineapple' },
+type ParcelType = 'document' | 'non-document'
+type Destination = 'dhaka' | 'chittagong' | 'khulna' | 'rajshahi' | 'sylhet'
+
+const parcelTypes = [
+  { label: 'Document', value: 'document' },
+  { label: 'Non-Document', value: 'non-document' },
 ]
 
 const destinations = [
@@ -56,9 +56,58 @@ const destinations = [
   { label: 'Sylhet', value: 'sylhet' },
 ]
 
+// Pricing rules only differentiate Dhaka vs other locations
+const pricingRules = {
+  dhaka: { base: 80, tier1PerKg: 20, tier2PerKg: 15 },
+  'outside-dhaka': { base: 100, tier1PerKg: 30, tier2PerKg: 25 },
+} as const
+
+function getRate(destination: Destination) {
+  return destination === 'dhaka' ? pricingRules.dhaka : pricingRules['outside-dhaka']
+}
+
+function calculateTieredCost(weight: number, destination: Destination): number {
+  const { base, tier1PerKg, tier2PerKg } = getRate(destination)
+
+  if (weight <= 1) return base
+
+  let cost = base
+  let remainingWeight = weight - 1
+
+  const tier1Kg = Math.min(remainingWeight, 9)
+  cost += tier1Kg * tier1PerKg
+  remainingWeight -= tier1Kg
+
+  if (remainingWeight > 0) {
+    const tier2Kg = Math.min(remainingWeight, 10)
+    cost += tier2Kg * tier2PerKg
+  }
+
+  return cost
+}
+
 export default function AboutPage() {
   useDocumentTitle('Pricing | Fast Courier')
-  const [parcelCost, setParcelCost] = useState(0)
+
+  const [parcelType, setParcelType] = useState<ParcelType>('document')
+  const [destination, setDestination] = useState<Destination>('dhaka')
+  const [weight, setWeight] = useState<number>(0)
+
+  // Live-computed cost
+  const parcelCost = useMemo(() => {
+    if (parcelType === 'document') {
+      // Document: flat base price, weight irrelevant
+      return getRate(destination).base
+    }
+    // Non-document: tiered pricing based on weight
+    return calculateTieredCost(weight, destination)
+  }, [parcelType, destination, weight])
+
+  const handleReset = () => {
+    setParcelType('document')
+    setDestination('dhaka')
+    setWeight(0)
+  }
 
   return (
     <section className="mx-3 md:mx-4 lg:mx-16 rounded-2xl py-10 mb-10">
@@ -70,7 +119,6 @@ export default function AboutPage() {
         />
         <hr className="mt-5 border-stone-300" />
 
-        {/* Pricing calculate area */}
         <CardContent className="px-0">
           <h2 className="text-2xl font-semibold mb-5 text-center">Calculate Your Cost</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -79,14 +127,18 @@ export default function AboutPage() {
                 <FieldGroup>
                   <Field>
                     <FieldLabel htmlFor="parcel_type">Parcel Type</FieldLabel>
-                    <Select items={items}>
+                    <Select
+                      items={parcelTypes}
+                      value={parcelType}
+                      onValueChange={(v) => setParcelType(v as ParcelType)}
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Select a parcel type" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
                           <SelectLabel>Parcel Type</SelectLabel>
-                          {items.map((item) => (
+                          {parcelTypes.map((item) => (
                             <SelectItem key={item.value} value={item.value}>
                               {item.label}
                             </SelectItem>
@@ -97,7 +149,11 @@ export default function AboutPage() {
                   </Field>
                   <Field>
                     <FieldLabel htmlFor="destination">Delivery Destination</FieldLabel>
-                    <Select items={destinations}>
+                    <Select
+                      items={destinations}
+                      value={destination}
+                      onValueChange={(v) => setDestination(v as Destination)}
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Select a destination" />
                       </SelectTrigger>
@@ -115,15 +171,21 @@ export default function AboutPage() {
                   </Field>
                   <Field>
                     <FieldLabel htmlFor="weight">Weight (KG)</FieldLabel>
-                    <Input id="weight" type="number" required placeholder="Enter weight in KG" />
+                    <Input
+                      id="weight"
+                      type="number"
+                      min="0"
+                      placeholder="Enter weight in KG"
+                      value={weight}
+                      onChange={(e) => setWeight(Number(e.target.value))}
+                      disabled={parcelType === 'document'}
+                    />
                   </Field>
                   <FieldGroup>
                     <Field className="grid grid-cols-[3fr_7fr] gap-4">
-                      <Button variant="outline" type="button">
+                      <Button variant="outline" type="button" onClick={handleReset}>
                         Reset
                       </Button>
-
-                      <Button type="submit">Calculate</Button>
                     </Field>
                   </FieldGroup>
                 </FieldGroup>
@@ -133,7 +195,6 @@ export default function AboutPage() {
               </form>
             </Card>
 
-            {/* Charges card */}
             <div className="mx-1 lg:mx-10 gap-4 lg:gap-8 grid grid-cols-1">
               {courierCharges.map((charge) => (
                 <Card key={charge.id} className="bg-primary/10">
